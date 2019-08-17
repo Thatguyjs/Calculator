@@ -73,6 +73,11 @@ Calculator.prototype.evalFunctions = function() {
 }
 Calculator.prototype.evalParens = function() {
 	while(this.data.includes('(')) {
+		if(!this.data.includs(')')) {
+			this.error = true;
+			break;
+		}
+		
 		let inds = [this.data.indexOf('('), this.data.indexOf(')')];
 		let part = this.data.slice(inds[0]+1, inds[1]);
 
