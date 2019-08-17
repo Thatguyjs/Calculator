@@ -92,7 +92,9 @@ Calculator.prototype.nextToken = function() {
 		if(match && match.index === 0) {
 			this.moveTo(match[0].length);
 
-			if(!!Number(match[0])) match[0] = Number(match[0]);
+			if(Number(match[0]) === 0 || !!Number(match[0])) {
+				match[0] = Number(match[0]);
+			}
 			result = {type: this.reserved[i][1], value: match[0]};
 
 			break;
