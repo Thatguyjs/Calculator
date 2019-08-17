@@ -4,8 +4,8 @@ A simple calculator that supports PEMDAS, and some extra functionality.
 
 Constants:
 -
-- PI
-- E
+- PI: p
+- E: e
 
 Functions:
 -
