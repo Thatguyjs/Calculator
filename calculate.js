@@ -73,7 +73,7 @@ Calculator.prototype.evalFunctions = function() {
 }
 Calculator.prototype.evalParens = function() {
 	while(this.data.includes('(')) {
-		if(!this.data.includs(')')) {
+		if(!this.data.includes(')')) {
 			this.error = true;
 			break;
 		}
