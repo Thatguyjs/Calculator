@@ -1,0 +1,28 @@
+body {
+	background: rgb(36, 37, 40);
+}
+
+#Visual {
+	width: 200px;
+}
+#Numbers {
+	width: 180px;
+	margin: 8px;
+}
+
+#Numbers .number, .operate {
+	width: 45px;
+	height: 45px;
+
+	margin: 4px 2px;
+}
+#Numbers .equals {
+	width: 98px;
+	height: 45px;
+
+	margin: 4px 2px;
+}
+
+#Numbers .equals:hover, .number:hover, .operate:hover {
+	cursor: pointer;
+}
