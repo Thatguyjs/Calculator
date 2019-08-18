@@ -25,12 +25,19 @@ body {
 
 	margin-left: 12px;
 }
+#Numbers > button:hover {
+	cursor: pointer;
+}
+
 #Functions {
 	display: inline-block;
 	width: 270px;
 }
+#Functions > button:hover {
+	cursor: pointer;
+}
 
-.number, .function, .constant, .operator, .clear, .backspace {
+.number, .link, .function, .constant, .operator, .clear, .backspace {
 	width: 60px;
 	height: 36px;
 
@@ -40,6 +47,11 @@ body {
 .number {
 	background: rgb(160, 160, 165);
 	border: 2px solid rgb(140, 142, 146);
+}
+
+.link {
+	background: rgb(200, 140, 70);
+	border: 2px solid rgb(180, 120, 50);
 }
 
 .function, .constant, .operator {
@@ -53,7 +65,7 @@ body {
 }
 
 .equals {
-	width: 128px;
+	width: 60px;
 	height: 36px;
 
 	margin: 4px 2px;
@@ -62,6 +74,15 @@ body {
 	border: 2px solid rgb(0, 140, 30);
 }
 
-#Numbers .equals:hover, .number:hover, .operate:hover, .function:hover {
+
+#Open {
+	width: 120px;
+	height: 50px;
+	margin: 12px 0;
+
+	background: rgb(80, 140, 200);
+	border: 2px solid rgb(60, 120, 176);
+}
+#Open:hover {
 	cursor: pointer;
 }

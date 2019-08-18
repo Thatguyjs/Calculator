@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Calculator</title>
+		<title>Calculator 2.0.2</title>
 
 		<link rel="stylesheet" href="style.css">
 	</head>
@@ -9,8 +9,8 @@
 		<div id="Visual">
 			<input id="Input" disabled>
 			<div id="Numbers">
-				<button class="function">(</button>
-				<button class="function">)</button>
+				<button class="link" onclick="goTo('github')">Github</button>
+				<button class="link" onclick="goTo('insta')">Insta</button>
 				<button class="clear">C</button>
 				<button class="number">7</button>
 				<button class="number">8</button>
@@ -22,6 +22,7 @@
 				<button class="number">2</button>
 				<button class="number">3</button>
 				<button class="number">0</button>
+				<button class="number">.</button>
 				<button class="equals">=</button>
 			</div>
 			<div id="Functions">
@@ -46,8 +47,13 @@
 				<button class="function">atan</button>
 				<button class="operator">/</button>
 				<button class="operator">^</button>
+
+				<button class="constant">(</button>
+				<button class="constant">)</button>
 			</div>
 		</div>
+
+		<button id="Open" onclick="openWindow()">New Window</button>
 
 		<script src="calculate.js"></script>
 		<script src="main.js"></script>

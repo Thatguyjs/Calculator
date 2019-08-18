@@ -1,3 +1,9 @@
+if(window.opener) {
+	let button = document.getElementById("Open");
+	console.log(button);
+	document.body.removeChild(button);
+}
+
 const input = document.getElementById("Input");
 let fnInds = [];
 let fnLengths = [];
@@ -101,7 +107,7 @@ document.getElementById("Numbers").onclick = function(event) {
 
 // Function keys
 const clickFunction = function(event) {
-	if(event.target.className === 'number') return;
+	if(event.target.className === 'link') return;
 
 	if(event.target.className === 'backspace') {
 		backspace();
@@ -118,3 +124,24 @@ const clickFunction = function(event) {
 }
 
 document.getElementById("Functions").onclick = clickFunction;
+
+
+// Open in seperate window
+function openWindow() {
+	window.open(
+		window.location.href,
+		"Calculator",
+		"width=520,height=300"
+	);
+}
+
+
+// My info
+function goTo(media) {
+	if(media === 'github') {
+		window.open("https://github.com/Thatguyjs");
+	}
+	else if(media === 'insta') {
+		window.open("https://instagram.com/thatguy.js");
+	}
+}
