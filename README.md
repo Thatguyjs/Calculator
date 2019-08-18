@@ -1,4 +1,4 @@
-v.2.0.0
+v.2.0.2
 # Calculator
 
 A simple calculator that supports PEMDAS, and some extra functionality.
