@@ -96,24 +96,19 @@ document.getElementById("Numbers").onclick = function(event) {
 	if(event.target.className === 'equals') {
 		calculate();
 	}
+	else if(event.target.className === 'clear') {
+		input.value = "";
+	}
 	else if(event.target.className === 'number') {
 		input.value += event.target.innerHTML;
-	}
-	else {
-		clickFunction(event);
 	}
 }
 
 
 // Function keys
 const clickFunction = function(event) {
-	if(event.target.className === 'link') return;
-
 	if(event.target.className === 'backspace') {
 		backspace();
-	}
-	else if(event.target.className === 'clear') {
-		input.value = "";
 	}
 	else if(event.target.className === 'constant') {
 		input.value += event.target.innerHTML;
