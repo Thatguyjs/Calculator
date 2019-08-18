@@ -42,12 +42,27 @@ Calculator.prototype.evalFunctions = function() {
 	let fnList = /sqrt|abs|log|round|sin|cos|tan|asin|acos|atan/;
 	let match = this.data.match(fnList);
 
-	if(!match || !this.data.includes(']')) return;
+	if(!match || !this.data.includes(')')) return;
 
 	while(match && !this.error) {
 		let part = this.data.slice(match.index);
-		part = part.slice(part.indexOf('[')+1, part.indexOf(']'));
 
+		// Get closing bracket
+		let lastInd = match.index+match[0].length;
+		let level = -1;
+		for(let i = match.index; i < this.data.length; i++) {
+			if(this.data[i] === '(') level++;
+			else if(this.data[i] === ')') {
+				if(level === 0) {
+					lastInd = i-match.index;
+					break;
+				}
+				else level--;
+			}
+		}
+		part = part.slice(part.indexOf('(')+1, lastInd);
+
+		// Calculate value
 		let calc = new Calculator();
 		calc = calc.eval(part);
 
@@ -66,7 +81,7 @@ Calculator.prototype.evalFunctions = function() {
 		else if(match[0] === 'atan') calc = Math.atan(calc);
 
 		// Replace function with result
-		this.data = this.data.replace(match[0]+'['+part+']', calc.toString());
+		this.data = this.data.replace(match[0]+'('+part+')', calc.toString());
 
 		match = this.data.match(fnList);
 	}
@@ -77,7 +92,7 @@ Calculator.prototype.evalParens = function() {
 			this.error = true;
 			break;
 		}
-		
+
 		let inds = [this.data.indexOf('('), this.data.indexOf(')')];
 		let part = this.data.slice(inds[0]+1, inds[1]);
 
@@ -166,6 +181,7 @@ Calculator.prototype.useToken = function(ind, type) {
 }
 
 Calculator.prototype.eval = function(data) {
+	if(!data) return "";
 	this.data = data;
 
 	// Parse constants and functions

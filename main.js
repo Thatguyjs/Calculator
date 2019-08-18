@@ -11,13 +11,15 @@ const Calc = new Calculator();
 
 
 function calculate() {
-	// Replace functions
+	// Reset string
+	fnInds = [];
+	fnLengths = [];
 
 	input.value = Calc.eval(input.value);
 
 	// Error checking
 	if(input.value === "ERROR") {
-		setTimeout(function() { input.value = ""; }, 1200);
+		setTimeout(function() { input.value = ""; }, 1000);
 	}
 
 	// Reset calculator
@@ -38,23 +40,23 @@ function backspace() {
 function handleShortcut(key, shift) {
 	let past = input.value.length;
 
-	if(key === 'q') input.value += 'sqrt[';
-	else if(key === 'a') input.value += 'abs[';
-	else if(key === 'g') input.value += 'log[';
-	else if(key === 'r') input.value += 'round[';
+	if(key === 'q') input.value += 'sqrt(';
+	else if(key === 'a') input.value += 'abs(';
+	else if(key === 'g') input.value += 'log(';
+	else if(key === 'r') input.value += 'round(';
 	else if(key === 'p') input.value += 'pi';
 	else if(key === 'e') input.value += 'e';
 	else if(key === 's') {
-		if(shift) input.value += 'asin[';
-		else input.value += 'sin[';
+		if(shift) input.value += 'asin(';
+		else input.value += 'sin(';
 	}
 	else if(key === 'c') {
-		if(shift) input.value += 'acos[';
-		else input.value += 'cos[';
+		if(shift) input.value += 'acos(';
+		else input.value += 'cos(';
 	}
 	else if(key === 't') {
-		if(shift) input.value += 'atan[';
-		else input.value += 'tan[';
+		if(shift) input.value += 'atan(';
+		else input.value += 'tan(';
 	}
 	else return;
 
@@ -75,6 +77,7 @@ document.onkeydown = function(event) {
 	}
 	else if(event.which === 13) {
 		calculate();
+		event.preventDefault();
 	}
 	else if(event.key.match(shortcuts)) {
 		handleShortcut(event.key.toLowerCase(), event.shiftKey);
@@ -84,10 +87,34 @@ document.onkeydown = function(event) {
 
 // Number keys
 document.getElementById("Numbers").onclick = function(event) {
-	if(event.target.className === "equals") {
+	if(event.target.className === 'equals') {
 		calculate();
 	}
-	else if(event.target.className) {
+	else if(event.target.className === 'number') {
 		input.value += event.target.innerHTML;
 	}
+	else {
+		clickFunction(event);
+	}
 }
+
+
+// Function keys
+const clickFunction = function(event) {
+	if(event.target.className === 'number') return;
+
+	if(event.target.className === 'backspace') {
+		backspace();
+	}
+	else if(event.target.className === 'clear') {
+		input.value = "";
+	}
+	else if(event.target.className === 'constant') {
+		input.value += event.target.innerHTML;
+	}
+	else if(event.target.className) {
+		input.value += event.target.innerHTML + '(';
+	}
+}
+
+document.getElementById("Functions").onclick = clickFunction;

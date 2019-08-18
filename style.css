@@ -3,26 +3,65 @@ body {
 }
 
 #Visual {
-	width: 200px;
+	width: 500px;
+	height: 280px;
+
+	background: rgb(50, 50, 50);
+	border-radius: 3px;
+}
+#Input {
+	width: 472px;
+	height: 26px;
+	margin: 10px 8px;
+	padding-right: 8px;
+
+	color: rgb(80, 80, 80);
+	font-size: 20px;
+	text-align: right;
 }
 #Numbers {
-	width: 180px;
-	margin: 8px;
+	display: inline-block;
+	width: 200px;
+
+	margin-left: 12px;
+}
+#Functions {
+	display: inline-block;
+	width: 270px;
 }
 
-#Numbers .number, .operate {
-	width: 45px;
-	height: 45px;
+.number, .function, .constant, .operator, .clear, .backspace {
+	width: 60px;
+	height: 36px;
 
 	margin: 4px 2px;
 }
-#Numbers .equals {
-	width: 98px;
-	height: 45px;
 
-	margin: 4px 2px;
+.number {
+	background: rgb(160, 160, 165);
+	border: 2px solid rgb(140, 142, 146);
 }
 
-#Numbers .equals:hover, .number:hover, .operate:hover {
+.function, .constant, .operator {
+	background: rgb(210, 210, 210);
+	border: 2px solid rgb(185, 190, 194);
+}
+
+.clear, .backspace {
+	background: rgb(170, 155, 163);
+	border: 2px solid rgb(150, 130, 140);
+}
+
+.equals {
+	width: 128px;
+	height: 36px;
+
+	margin: 4px 2px;
+
+	background: rgb(20, 160, 50);
+	border: 2px solid rgb(0, 140, 30);
+}
+
+#Numbers .equals:hover, .number:hover, .operate:hover, .function:hover {
 	cursor: pointer;
 }
