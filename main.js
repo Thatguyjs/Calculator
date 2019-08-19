@@ -1,16 +1,17 @@
+// For seperate windows
 if(window.opener) {
 	let button = document.getElementById("Open");
-	console.log(button);
 	document.body.removeChild(button);
+	document.getElementById("Body").className = "Container";
 }
 
 const input = document.getElementById("Input");
 let fnInds = [];
 let fnLengths = [];
 
-const allowed = /[0-9]|\.|\+|\-|\*|\/|\(|\)|\]|\^/;
-const functions = /sqrt|abs|log|round|sin|cos|tan|asin|acos|atan/;
-const shortcuts = /q|a|g|r|p|e|s|c|t/i;
+const allowed = /[0-9]|\.|\+|\-|\*|\/|\(|\)|\^/;
+const functions = /sqrt|abs|log|ln|round|sin|cos|tan|asin|acos|atan/;
+const shortcuts = /d|q|a|g|l|r|p|e|s|c|t/i;
 const constants = /pi|e/;
 
 const Calc = new Calculator();
@@ -32,6 +33,11 @@ function calculate() {
 	Calc.reset();
 }
 
+function switchMode() {
+	let mode = Calc.switchMode().slice(0, 3);
+	document.getElementsByClassName("rad-deg")[0].innerHTML = mode;
+}
+
 function backspace() {
 	if(input.value.length === fnInds[fnInds.length-1]) {
 		input.value = input.value.slice(0, -fnLengths[fnLengths.length-1]);
@@ -46,12 +52,17 @@ function backspace() {
 function handleShortcut(key, shift) {
 	let past = input.value.length;
 
-	if(key === 'q') input.value += 'sqrt(';
+	if(key === 'd') switchMode();
+
+	else if(key === 'q') input.value += 'sqrt(';
 	else if(key === 'a') input.value += 'abs(';
 	else if(key === 'g') input.value += 'log(';
+	else if(key === 'l') input.value += 'ln(';
 	else if(key === 'r') input.value += 'round(';
+
 	else if(key === 'p') input.value += 'pi';
 	else if(key === 'e') input.value += 'e';
+
 	else if(key === 's') {
 		if(shift) input.value += 'asin(';
 		else input.value += 'sin(';
@@ -64,6 +75,7 @@ function handleShortcut(key, shift) {
 		if(shift) input.value += 'atan(';
 		else input.value += 'tan(';
 	}
+	
 	else return;
 
 	fnInds.push(input.value.length);
@@ -126,7 +138,7 @@ function openWindow() {
 	window.open(
 		window.location.href,
 		"Calculator",
-		"width=520,height=300"
+		"width=540,height=350"
 	);
 }
 

@@ -3,6 +3,8 @@ let Calculator = function() {
 		[/[0-9]*\.*[0-9]+/, 'NUMBER'],
 		[/\+|\-|\*|\/|\^/, 'OPERATOR']
 	];
+	this.mode = "Degrees"; // Radians or Degrees
+	this.modeValue = [Math.PI / 180, 180 / Math.PI];
 
 	this.data = "";
 	this.tokens = [];
@@ -14,6 +16,18 @@ Calculator.prototype.reset = function() {
 	this.tokens = [];
 
 	this.error = false;
+}
+Calculator.prototype.switchMode = function() {
+	if(this.mode === 'Degrees') {
+		this.mode = 'Radians';
+		this.modeValue = [1, 1];
+	}
+	else {
+		this.mode = 'Degrees';
+		this.modeValue = [Math.PI / 180, 180 / Math.PI];
+	}
+
+	return this.mode;
 }
 Calculator.prototype.moveTo = function(index) {
 	this.data = this.data.slice(index);
@@ -39,7 +53,7 @@ Calculator.prototype.evalConsts = function() {
 	}
 }
 Calculator.prototype.evalFunctions = function() {
-	let fnList = /sqrt|abs|log|round|sin|cos|tan|asin|acos|atan/;
+	let fnList = /sqrt|abs|log|ln|round|sin|cos|tan|asin|acos|atan/;
 	let match = this.data.match(fnList);
 
 	if(!match || !this.data.includes(')')) return;
@@ -70,15 +84,16 @@ Calculator.prototype.evalFunctions = function() {
 		if(match[0] === 'sqrt') calc = Math.sqrt(calc);
 		else if(match[0] === 'abs') calc = Math.abs(calc);
 		else if(match[0] === 'log') calc = Math.log10(calc);
+		else if(match[0] === 'ln') calc = Math.log(calc);
 		else if(match[0] === 'round') calc = Math.round(calc);
 
-		else if(match[0] === 'sin') calc = Math.sin(calc);
-		else if(match[0] === 'cos') calc = Math.cos(calc);
-		else if(match[0] === 'tan') calc = Math.tan(calc);
+		else if(match[0] === 'sin') calc = Math.sin(calc * this.modeValue[0]);
+		else if(match[0] === 'cos') calc = Math.cos(calc * this.modeValue[0]);
+		else if(match[0] === 'tan') calc = Math.tan(calc * this.modeValue[0]);
 
-		else if(match[0] === 'asin') calc = Math.asin(calc);
-		else if(match[0] === 'acos') calc = Math.acos(calc);
-		else if(match[0] === 'atan') calc = Math.atan(calc);
+		else if(match[0] === 'asin') calc = Math.asin(calc) * this.modeValue[1];
+		else if(match[0] === 'acos') calc = Math.acos(calc) * this.modeValue[1];
+		else if(match[0] === 'atan') calc = Math.atan(calc) * this.modeValue[1];
 
 		// Replace function with result
 		this.data = this.data.replace(match[0]+'('+part+')', calc.toString());

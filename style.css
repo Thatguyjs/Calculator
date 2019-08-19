@@ -2,7 +2,15 @@ body {
 	background: rgb(36, 37, 40);
 }
 
-#Visual {
+.Container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#Calc {
+	top: 50%;
 	width: 500px;
 	height: 280px;
 
@@ -37,7 +45,7 @@ body {
 	cursor: pointer;
 }
 
-.number, .link, .function, .constant, .operator, .clear, .backspace {
+#Calc button {
 	width: 60px;
 	height: 36px;
 
@@ -49,14 +57,14 @@ body {
 	border: 2px solid rgb(140, 142, 146);
 }
 
-.link {
-	background: rgb(200, 140, 70);
-	border: 2px solid rgb(180, 120, 50);
-}
-
 .function, .constant, .operator {
 	background: rgb(210, 210, 210);
 	border: 2px solid rgb(185, 190, 194);
+}
+
+.rad-deg {
+	background: rgb(135, 163, 190);
+	border: 2px solid rgb(110, 140, 170);
 }
 
 .clear, .backspace {
@@ -76,9 +84,12 @@ body {
 
 
 #Open {
+	position: absolute;
+	left: 8px;
+	bottom: 9px;
+
 	width: 120px;
 	height: 50px;
-	margin: 12px 0;
 
 	background: rgb(80, 140, 200);
 	border: 2px solid rgb(60, 120, 176);
