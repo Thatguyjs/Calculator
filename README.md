@@ -20,3 +20,7 @@ Functions:
 - ASin: Shift + s
 - ACos: Shift + c
 - ATan: Shift + t
+
+Known Bugs:
+-
+- Negative numbers don't always work
