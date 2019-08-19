@@ -115,6 +115,9 @@ document.getElementById("Numbers").onclick = function(event) {
 	else if(event.target.className === 'clear') {
 		input.value = "";
 	}
+	else if(event.target.className === 'backspace') {
+		backspace();
+	}
 	else if(event.target.className === 'number') {
 		input.value += event.target.innerHTML;
 	}
@@ -123,14 +126,15 @@ document.getElementById("Numbers").onclick = function(event) {
 
 // Function keys
 const clickFunction = function(event) {
-	if(event.target.className === 'backspace') {
-		backspace();
-	}
-	else if(event.target.className === 'constant') {
+	if(event.target.className === 'constant') {
 		input.value += event.target.innerHTML;
 	}
 	else if(event.target.className) {
+		let past = input.value.length;
 		input.value += event.target.innerHTML + '(';
+
+		fnInds.push(input.value.length);
+		fnLengths.push(input.value.length-past);
 	}
 }
 

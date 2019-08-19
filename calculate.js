@@ -3,18 +3,20 @@ let Calculator = function() {
 		[/[0-9]*\.*[0-9]+/, 'NUMBER'],
 		[/\+|\-|\*|\/|\^/, 'OPERATOR']
 	];
-	
+
 	this.mode = "Degrees"; // Radians or Degrees
 	this.modeValue = [Math.PI / 180, 180 / Math.PI];
 
 	this.data = "";
 	this.tokens = [];
+	this.negative = false;
 
 	this.error = false;
 }
 Calculator.prototype.reset = function() {
 	this.data = "";
 	this.tokens = [];
+	this.negative = false;
 
 	this.error = false;
 }
@@ -128,10 +130,35 @@ Calculator.prototype.nextToken = function() {
 		if(match && match.index === 0) {
 			this.moveTo(match[0].length);
 
-			if(Number(match[0]) === 0 || !!Number(match[0])) {
-				match[0] = Number(match[0]);
+			// Check if "-" is a modifier or operator
+			if(match[0] === '-') {
+				if(!this.tokens.length) {
+					this.negative = true;
+				}
+				else if(this.tokens[this.tokens.length-1].type !== 'NUMBER') {
+					this.negative = true;
+				}
 			}
-			result = {type: this.reserved[i][1], value: match[0]};
+
+			// Turn string ot number
+			if(Number(match[0]) === 0 || !!Number(match[0])) {
+				if(!this.negative) match[0] = Number(match[0]);
+				else {
+					match[0] = -Number(match[0]);
+					this.negative = false;
+				}
+			}
+
+			if(!this.negative) {
+				result = {
+					type: this.reserved[i][1],
+					value: match[0],
+					negative: this.negative
+				};
+			}
+			else {
+				result = this.nextToken();
+			}
 
 			break;
 		}
