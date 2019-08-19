@@ -75,7 +75,7 @@ function handleShortcut(key, shift) {
 		if(shift) input.value += 'atan(';
 		else input.value += 'tan(';
 	}
-	
+
 	else return;
 
 	fnInds.push(input.value.length);
@@ -97,7 +97,7 @@ document.onkeydown = function(event) {
 		calculate();
 		event.preventDefault();
 	}
-	else if(event.key.match(shortcuts)) {
+	else if(event.key.match(shortcuts) && !event.ctrlKey) {
 		handleShortcut(event.key.toLowerCase(), event.shiftKey);
 	}
 }

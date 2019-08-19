@@ -1,5 +1,6 @@
 body {
 	background: rgb(36, 37, 40);
+	overflow: hidden;
 }
 
 .Container {
