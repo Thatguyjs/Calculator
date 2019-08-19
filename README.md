@@ -23,4 +23,4 @@ Functions:
 
 Known Bugs:
 -
-- Nested parenthesis expressions can result in errors
+- Nested parenthesis can result in errors
