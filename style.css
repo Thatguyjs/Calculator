@@ -92,8 +92,8 @@ body {
 	width: 120px;
 	height: 50px;
 
-	background: rgb(80, 140, 200);
-	border: 2px solid rgb(60, 120, 176);
+	background: rgb(80, 140, 195);
+	border: 2px solid rgb(40, 110, 166);
 }
 #Open:hover {
 	cursor: pointer;

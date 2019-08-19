@@ -1,4 +1,4 @@
-// For seperate windows
+// For seperate window
 if(window.opener) {
 	let button = document.getElementById("Open");
 	document.body.removeChild(button);
@@ -17,6 +17,7 @@ const constants = /pi|e/;
 const Calc = new Calculator();
 
 
+// Calculate result from "input"
 function calculate() {
 	// Reset string
 	fnInds = [];
@@ -33,11 +34,13 @@ function calculate() {
 	Calc.reset();
 }
 
+// Switch between degrees and radians
 function switchMode() {
 	let mode = Calc.switchMode().slice(0, 3);
 	document.getElementsByClassName("rad-deg")[0].innerHTML = mode;
 }
 
+// Delete last character or function
 function backspace() {
 	if(input.value.length === fnInds[fnInds.length-1]) {
 		input.value = input.value.slice(0, -fnLengths[fnLengths.length-1]);
@@ -49,6 +52,7 @@ function backspace() {
 	input.value = input.value.slice(0, -1);
 }
 
+// Use shortcuts
 function handleShortcut(key, shift) {
 	let past = input.value.length;
 
@@ -135,11 +139,7 @@ document.getElementById("Functions").onclick = clickFunction;
 
 // Open in seperate window
 function openWindow() {
-	window.open(
-		window.location.href,
-		"Calculator",
-		"width=540,height=350"
-	);
+	window.open(window.location.href, "Calculator", "width=540,height=350");
 }
 
 

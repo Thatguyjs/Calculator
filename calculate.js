@@ -3,6 +3,7 @@ let Calculator = function() {
 		[/[0-9]*\.*[0-9]+/, 'NUMBER'],
 		[/\+|\-|\*|\/|\^/, 'OPERATOR']
 	];
+	
 	this.mode = "Degrees"; // Radians or Degrees
 	this.modeValue = [Math.PI / 180, 180 / Math.PI];
 
