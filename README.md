@@ -1,8 +1,8 @@
 v.2.0.9
 # Calculator
 
-A simple calculator that supports PEMDAS, and some extra functionality.
-+ Visit me online at https://thatguyjs.github.io/Calculator
+A simple calculator that supports PEMDAS, made for the browser.<br>
+Use it here: https://thatguyjs.github.io/Calculator
 
 Constants:
 -
