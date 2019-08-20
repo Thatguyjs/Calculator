@@ -2,7 +2,7 @@
 if(window.opener) {
 	let button = document.getElementById("Open");
 	document.body.removeChild(button);
-	document.getElementById("Body").className = "Container";
+	window.resizeTo(516, (outerHeight-innerHeight)-20+280);
 }
 
 const input = document.getElementById("Input");

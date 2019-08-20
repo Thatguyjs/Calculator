@@ -111,8 +111,22 @@ Calculator.prototype.evalParens = function() {
 			break;
 		}
 
-		let inds = [this.data.indexOf('('), this.data.indexOf(')')];
-		let part = this.data.slice(inds[0]+1, inds[1]);
+		let inds = [this.data.indexOf('(')];
+
+		// Get closing parenthesis
+		let part = this.data.slice(inds[0]+1);
+		let level = 0;
+		for(let i = 0; i < part.length; i++) {
+			if(part[i] === '(') level++;
+			else if(part[i] === ')') {
+				if(level === 0) {
+					inds[1] = i;
+				}
+				else level--;
+			}
+		}
+
+		part = part.slice(0, inds[1]);
 
 		let calc = new Calculator();
 		calc = calc.eval(part).toString();
