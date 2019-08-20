@@ -2,7 +2,7 @@
 if(window.opener) {
 	let button = document.getElementById("Open");
 	document.body.removeChild(button);
-	window.resizeTo(516, (outerHeight-innerHeight)-20+280);
+	document.getElementById("Calc").className = "Center";
 }
 
 const input = document.getElementById("Input");
