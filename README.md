@@ -14,6 +14,7 @@ Functions:
 - Sqrt: q
 - Abs: a
 - Log: g
+- NLog: l
 - Round: r
 - Sin: s
 - Cos: c
